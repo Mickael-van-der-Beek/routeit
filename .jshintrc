@@ -1,0 +1,35 @@
+{
+	"boss": true,
+	"expr": true,
+	"curly": true,
+	"undef": true,
+	"noarg": true,
+	"immed": true,
+	"eqnull": true,
+	"strict": true,
+	"unused": true,
+	"freeze": true,
+	"eqeqeq": true,
+	"nonbsp": false,
+	"nonew": true,
+	"newcap": false,
+	"noempty": true,
+	"quotmark": "single",
+
+	"node": true,
+
+	"globals": {
+		"exports": false,
+		"require": false,
+		"module": false,
+
+		"beforeEach": false,
+		"before": false,
+
+		"afterEach": false,
+		"after": false,
+
+		"describe": false,
+		"it": false
+    }
+}
