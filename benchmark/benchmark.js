@@ -48,7 +48,11 @@ module.exports = (function () {
 		 */
 		var start1 = Date.now();
 		for (i = 0; i < iter; i++) {
-			path = paths[Math.floor(Math.random() * paths.length)];
+			path = paths[Math.floor(Math.random() * paths.length) + (paths.length * 0.05)];
+
+			if (path === undefined) {
+				path = crypto.randomBytes(64).toString('hex').replace(/f/g, '/');
+			}
 
 			expressRouter.get(path);
 		}
@@ -59,13 +63,17 @@ module.exports = (function () {
 		 */
 		var start2 = Date.now();
 		for (i = 0; i < iter; i++) {
-			path = paths[Math.floor(Math.random() * paths.length)];
+			path = paths[Math.floor(Math.random() * paths.length) + (paths.length * 0.05)];
 
-			expressRouter.get(path);
+			if (path === undefined) {
+				path = crypto.randomBytes(64).toString('hex').replace(/f/g, '/');
+			}
+
+			routeit.get(path);
 		}
 		var end2 = Date.now();
 
-		console.log('> For ' + n + ' paths and ' + iter + 'iterations');
+		console.log('> For ' + n + ' paths and ' + iter + ' iterations');
 		console.log('> ExpressRouter\'s time: ' + (end1 - start1) + ' ms');
 		console.log('> RouteIt\'s time: ' + (end2 - start2) + ' ms');
 

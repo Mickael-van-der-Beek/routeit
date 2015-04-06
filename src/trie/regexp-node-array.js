@@ -9,6 +9,7 @@ module.exports = (function () {
 		NodeArray.call(this);
 
 		this.regexpNodes = {};
+		this.regexpCache = {};
 	}
 
 	util.inherits(RegExpNodeArray, NodeArray);
@@ -20,7 +21,8 @@ module.exports = (function () {
 		var regexp;
 
 		for (regexpSource in this.regexpNodes) {
-			regexp = new RegExp(regexpSource);
+			// regexp = new RegExp(regexpSource);
+			regexp = this.regexpCache[regexpSource];
 
 			if (regexp.test(pathcomp) === true) {
 				node = this.regexpNodes[regexpSource];
@@ -39,6 +41,7 @@ module.exports = (function () {
 		}
 		else {
 			node = this.regexpNodes[regexp.source] = this.createNode();
+			this.regexpCache[regexp.source] = new RegExp(regexp.source);
 		}
 
 		node.values.push(value);
