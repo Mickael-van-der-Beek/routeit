@@ -21,7 +21,6 @@ module.exports = (function () {
 		var regexp;
 
 		for (regexpSource in this.regexpNodes) {
-			// regexp = new RegExp(regexpSource);
 			regexp = this.regexpCache[regexpSource];
 
 			if (regexp.test(pathcomp) === true) {

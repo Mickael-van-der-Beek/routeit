@@ -18,7 +18,8 @@
 		"grunt-jsonlint": "~1.0.4",
 		"grunt-jscs": "~0.6.1",
 
-		"path-to-regexp": "~1.0.3"
+		"path-to-regexp": "~1.0.3",
+		"express": "~4.12.2"
 	},
 	"repository": {
 		"type": "git",

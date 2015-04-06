@@ -1,6 +1,7 @@
-var ExpressRouter = require('./fixtures/express-router');
+var ExpressRouter = require('express').Router;
 var RouteIt = require('../src/router');
 
+var pathToRegexp = require('path-to-regexp');
 var crypto = require('crypto');
 
 module.exports = (function () {
@@ -39,7 +40,11 @@ module.exports = (function () {
 
 			path = paths[i];
 
-			expressRouter.set(path, handler(i));
+			if (Math.random() < -1) {
+				path = pathToRegexp(path);
+			}
+
+			expressRouter.use(path, handler(i));
 			routeit.set(path, handler(i));
 		}
 
@@ -54,7 +59,11 @@ module.exports = (function () {
 				path = crypto.randomBytes(64).toString('hex').replace(/f/g, '/');
 			}
 
-			expressRouter.get(path);
+			expressRouter.handle({
+				method: 'GET',
+				url: path,
+				hit: 0
+			}, {}, function () {});
 		}
 		var end1 = Date.now();
 
